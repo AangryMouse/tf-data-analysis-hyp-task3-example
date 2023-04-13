@@ -1,10 +1,10 @@
 import pandas as pd
 import numpy as np
-from hyppo.ksample import MMD
+import statsmodels.stats.weightstats as w
 
 
 chat_id = 396317433
 
 def solution(x, y) -> bool: 
-    pval = MMD(compute_kernel="rbf", gamma=1).test(x, y)[1]
-    return pval <= 0.07
+    _, res = w.ztest(y, value=np.median(x), alternative='larger')
+    return res <= 0.07
