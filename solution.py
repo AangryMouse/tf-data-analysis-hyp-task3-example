@@ -1,11 +1,10 @@
 import pandas as pd
 import numpy as np
+import statsmodels.stats.weightstats as weightstats
 
 
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
+chat_id = 396317433
 
-def solution(...) -> bool: # Одна или две выборке на входе, заполняется исходя из условия
-    # Измените код этой функции
-    # Это будет вашим решением
-    # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+def solution(x, y) -> bool: 
+    _, res = weightstats.ztest(y, value=np.median(x), alternative='larger')
+    return res <= 0.07
